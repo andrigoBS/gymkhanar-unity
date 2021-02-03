@@ -66,7 +66,7 @@ public class GameRequest : MonoBehaviour{
     }
 
     public IEnumerator getRequest(){
-        UnityWebRequest uwr = UnityWebRequest.Get(baseUrl+"level?token"+token);
+        UnityWebRequest uwr = UnityWebRequest.Get(baseUrl+"level?token="+token);
 
         //Send the request then wait here until it returns
         yield return uwr.SendWebRequest();
@@ -102,13 +102,21 @@ public class GameRequest : MonoBehaviour{
         Destroy(gameObject.GetComponent<ImageTracker>());
         Destroy(gameObject.transform.GetChild(0).gameObject);
     }
-
-    public void activeReward(){
-        imageTrackable.Drawable = (GameObject)Resources.Load(reward);
-        Start();
-    }
-
+    
     public bool isTracked(){
         return tracked;
+    }
+
+    public void activeReward(){
+        GameObject rewardObject = Instantiate((GameObject)Resources.Load(reward));
+        rewardObject.transform.parent = gameObject.transform;
+        StartCoroutine(LoadLevelAfterDelay(2, rewardObject));
+    }
+    
+    private IEnumerator LoadLevelAfterDelay(float delay, GameObject gameObject)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
+        SceneManager.LoadScene("Game");
     }
 }

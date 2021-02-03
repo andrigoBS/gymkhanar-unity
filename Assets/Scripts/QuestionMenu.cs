@@ -24,14 +24,9 @@ public class QuestionMenu : MonoBehaviour{
         
     }
 
-    void correctAnswer(){
+    public void correctAnswer(){
         onQuestion = false;
         Destroy(gameObject.transform.GetChild(0).gameObject);
         gameScript.activeReward();
     }
-
-    void errorAnswer(){
-        
-    }
-
 }
