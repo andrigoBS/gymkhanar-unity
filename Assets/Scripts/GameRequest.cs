@@ -10,7 +10,7 @@ using UnityEditor;
 
 public class GameRequest : MonoBehaviour{
     private string token = "004";
-    private string baseUrl = "http://localhost:5000/";
+    private string baseUrl = "http://192.168.15.57:5000/";
     private ImageTrackable imageTrackable;
     private string reward = "Sphere";
 
@@ -44,11 +44,11 @@ public class GameRequest : MonoBehaviour{
                 Debug.Log("Error While Sending: " + uwr.error);
             } else {
                 System.IO.File.WriteAllBytes(writePath, uwr.downloadHandler.data);
-    
+
                 Debug.Log("Wrote to path");
             }
 
-            AssetDatabase.Refresh();
+            //AssetDatabase.Refresh();
         }
 
         GameObject trackableObject = new GameObject("TrackableObject");
@@ -56,11 +56,11 @@ public class GameRequest : MonoBehaviour{
         trackableObject.transform.SetParent(transform, false);
         imageTrackable.Drawable = (GameObject)Resources.Load(responseObject.name);
 
-        imageTrackable.OnImageRecognized.AddListener((eventData) => { 
+        imageTrackable.OnImageRecognized.AddListener((eventData) => {
             tracked = true;
         });
 
-        imageTrackable.OnImageLost.AddListener((eventData) => { 
+        imageTrackable.OnImageLost.AddListener((eventData) => {
             tracked = false;
         });
     }
@@ -102,7 +102,7 @@ public class GameRequest : MonoBehaviour{
         Destroy(gameObject.GetComponent<ImageTracker>());
         Destroy(gameObject.transform.GetChild(0).gameObject);
     }
-    
+
     public bool isTracked(){
         return tracked;
     }
@@ -112,7 +112,7 @@ public class GameRequest : MonoBehaviour{
         rewardObject.transform.parent = gameObject.transform;
         StartCoroutine(LoadLevelAfterDelay(2, rewardObject));
     }
-    
+
     private IEnumerator LoadLevelAfterDelay(float delay, GameObject gameObject)
     {
         yield return new WaitForSeconds(delay);
