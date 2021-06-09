@@ -14,16 +14,18 @@ public class OptionQuestion : MonoBehaviour
         "", 
         "errado porque sim"
     };
+    private bool[] addedJustifications = new bool[]{ false, false, false };
 
     public void onClickOption(int optionIndex) {
         QuestionMenu questionScript = transform.parent.gameObject.GetComponent<QuestionMenu>();
         if (correctOptionIndex == optionIndex) {
             questionScript.correctAnswer();
-        } else
+        } else if(!addedJustifications[optionIndex])
         {
-            texts[optionIndex].text = texts[optionIndex].text + ".\nJustificativa:" + justifications[optionIndex];
+            texts[optionIndex].text += ".\nJustificativa:" + justifications[optionIndex];
             texts[optionIndex].color = new Color32(255, 0, 0, 255);
             Debug.Log(texts[optionIndex].text);
+            addedJustifications[optionIndex] = true;
         }
     }
 }

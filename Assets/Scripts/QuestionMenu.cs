@@ -15,7 +15,7 @@ public class QuestionMenu : MonoBehaviour{
 
     void Update(){
         if(!onQuestion && gameScript.isTracked() && Input.GetMouseButtonDown(0)){
-            GameObject questionMenuAssets = (GameObject)Resources.Load("Image");
+            GameObject questionMenuAssets = (GameObject)Resources.Load("Questions");
             GameObject questionAssets = Instantiate(questionMenuAssets);
             questionAssets.transform.SetParent(transform, false);
             onQuestion = true;

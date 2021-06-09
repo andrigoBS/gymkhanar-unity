@@ -7,20 +7,22 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
+using DataHelpers;
 
 public class GameRequest : MonoBehaviour{
-    private string token = "004";
-    private string baseUrl = "http://192.168.15.57:5000/";
+    private string token;
+    private string baseUrl = "http://192.168.3.8:5000";
     private ImageTrackable imageTrackable;
     private string reward = "Sphere";
 
     private bool tracked = false;
 
     void Start(){
+        token = PlayerPrefs.GetString("TOKEN");
         StartCoroutine(getRequest());
     }
 
-    private void createLevel(ResponseLevel response){
+    private void createLevel(LevelDTO response){
         StartCoroutine(importObject(response.asset));
 
         ImageTracker imageTracker = gameObject.AddComponent<ImageTracker>();
@@ -30,8 +32,10 @@ public class GameRequest : MonoBehaviour{
         imageTracker.TargetCollectionResource.TargetPath = response.tracking.url;
     }
 
-    IEnumerator importObject(ResponseLevelFile responseObject){
-        string writePath = Application.dataPath + "/Resources/" + responseObject.name + "." + responseObject.type;
+    IEnumerator importObject(LevelFileDTO responseObject){
+        string writePath = Application.persistentDataPath + "/" + responseObject.name + "." + responseObject.type;
+
+        Debug.Log(writePath);
 
         if(!System.IO.File.Exists(@""+writePath)){
             Debug.Log("não existe");
@@ -66,7 +70,9 @@ public class GameRequest : MonoBehaviour{
     }
 
     public IEnumerator getRequest(){
-        UnityWebRequest uwr = UnityWebRequest.Get(baseUrl+"level?token="+token);
+        UnityWebRequest uwr = UnityWebRequest.Get(baseUrl+"/level?token="+token);
+
+        Debug.Log(baseUrl + "/level?token=" + token);
 
         //Send the request then wait here until it returns
         yield return uwr.SendWebRequest();
@@ -74,28 +80,13 @@ public class GameRequest : MonoBehaviour{
         if (uwr.result == UnityWebRequest.Result.ConnectionError){
             Debug.Log("Error While Sending: " + uwr.error);
         } else {
-            ResponseLevel response = JsonUtility.FromJson<ResponseLevel>(uwr.downloadHandler.text);
-            if(string.IsNullOrEmpty(response.error)){
+            LevelDTO response = JsonUtility.FromJson<LevelDTO>(uwr.downloadHandler.text);
+            if(response != null && string.IsNullOrEmpty(response.error)){
                 createLevel(response);
             }else{
-                Debug.Log("Server Reponse Error: " + response.error);
+                Debug.Log("Server Reponse Error: " + JsonUtility.ToJson(response));
             }
         }
-    }
-
-    [System.Serializable]
-    public class ResponseLevel{
-        public string error;
-        public int levelNumber;
-        public ResponseLevelFile previewImage;
-        public ResponseLevelFile tracking;
-        public ResponseLevelFile asset;
-    }
-    [System.Serializable]
-    public class ResponseLevelFile{
-        public string url;
-        public string name;
-        public string type;
     }
 
     public void destroyChildren(){
@@ -117,6 +108,6 @@ public class GameRequest : MonoBehaviour{
     {
         yield return new WaitForSeconds(delay);
         Destroy(gameObject);
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("imageChestQuest");
     }
 }
