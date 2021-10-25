@@ -4,50 +4,51 @@ using UnityEngine.SceneManagement;
 using System;
 using UnityEngine;
 using TMPro;
+using DataHelpers;
 
-public class LoadScene : MonoBehaviour
+public class LoadSceneController : MonoBehaviour
 {
-    public static LoadScene Instance { get; private set; }
-    
     [SerializeField] private TextMeshProUGUI text = null;
+
+	private static DataHelper dataHelper = null;
     
-    private string deeplinkURL;
-    private void Awake()
+    void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;                
+        if (dataHelper == null)
+        {               
             Application.deepLinkActivated += onDeepLinkActivated;
             if (!String.IsNullOrEmpty(Application.absoluteURL))
             {
                 onDeepLinkActivated(Application.absoluteURL);
-            }
-            else deeplinkURL = "[none]";
+            }else{
+				text.text = "Não foi possivel carregar a cena!!!! :( \nToken não informado";
+			}
             DontDestroyOnLoad(gameObject);
         }
         else
         {
+			loadScene();
             Destroy(gameObject);
         }
+		Debug.Log(text.text);
     }
  
     private void onDeepLinkActivated(string url)
     {
-        deeplinkURL = url;
-        string[] parameters = url.Split("?"[0])[1].Split(";"[0]);
+		dataHelper = DataHelper.getInstance();
+		dataHelper.setToken(url.Split("?token="[0])[1]);
+		loadScene();
+    }
 
-		string token = parameters[0];
-        string scene = parameters[1];
-        
-        PlayerPrefs.SetString("TOKEN", token);
-
-        try 
+	private void loadScene()
+	{		
+		try 
         {
-            SceneManager.LoadScene(scene);
+	       	SceneManager.LoadScene(dataHelper.getLevel().getNextScene());
         }
         catch (Exception e)
         {
             text.text = "Não foi possivel carregar a cena!!!! :( \n\n"+e;
         }
-    }
+	}
 }

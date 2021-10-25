@@ -9,9 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 1cac66434ea08b245a9e2052be82647d
   - enabled: 1
-    path: Assets/Scenes/areaHunt.unity
-    guid: 63343d8ca31d054468af57c7ab1e16e2
+    path: Assets/Scenes/Question.unity
+    guid: c4ceea6dc1bb1fa42bd176d21b98154a
   - enabled: 1
-    path: Assets/Scenes/imageChestQuest.unity
-    guid: 5ad254df2bfcdee42bf6a92e8fecdaaf
+    path: Assets/Scenes/Tip.unity
+    guid: bbb0622f44db72048a1da7689649f483
+  - enabled: 1
+    path: Assets/Scenes/Tracking.unity
+    guid: adc5fa1a40fd9c446a67e909686b4a85
+  - enabled: 1
+    path: Assets/Scenes/ChestReward.unity
+    guid: e76db5780657a8643a9a3dc39d8d19b5
   m_configObjects: {}

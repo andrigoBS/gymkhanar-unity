@@ -159,8 +159,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 22.267, y: -94.3982}
-  m_SizeDelta: {x: 44.532, y: 20.19638}
+  m_AnchoredPosition: {x: 33, y: -125}
+  m_SizeDelta: {x: 61.05454, y: 21.07329}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &39963118
 MonoBehaviour:
@@ -206,8 +206,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ClueCanvas, Assembly-CSharp
+      - m_Target: {fileID: 2017882290}
+        m_TargetAssemblyTypeName: Tip, Assembly-CSharp
         m_MethodName: onOkClick
         m_Mode: 1
         m_Arguments:
@@ -366,8 +366,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.713, y: -21.457333}
-  m_SizeDelta: {x: 90.492, y: 118.95267}
+  m_AnchoredPosition: {x: 0.26254, y: -35.81342}
+  m_SizeDelta: {x: 119.3, y: 156.02718}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &884301546
 MonoBehaviour:
@@ -812,8 +812,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.713, y: 59.238117}
-  m_SizeDelta: {x: 90.492, y: 42.44077}
+  m_AnchoredPosition: {x: 0.26176, y: 73.40695}
+  m_SizeDelta: {x: 119.3, y: 62.4129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1610491897
 MonoBehaviour:
@@ -835,7 +835,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Pista para ca\xE7a ao tesouro"
+  m_text: 'Pista '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -946,8 +946,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.713, y: 89.842}
-  m_SizeDelta: {x: 90.492, y: 18.77}
+  m_AnchoredPosition: {x: 0.26177, y: 118.81}
+  m_SizeDelta: {x: 119.30454, y: 28.403}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1612009644
 MonoBehaviour:
@@ -969,7 +969,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pista 1
+  m_text: Pista
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -996,7 +996,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.8
+  m_fontSize: 25.4
   m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1123,6 +1123,7 @@ GameObject:
   - component: {fileID: 2017882287}
   - component: {fileID: 2017882289}
   - component: {fileID: 2017882288}
+  - component: {fileID: 2017882290}
   m_Layer: 5
   m_Name: Tip
   m_TagString: Untagged
@@ -1150,8 +1151,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 14.27002, y: 7}
-  m_SizeDelta: {x: -968.75, y: -1677.97}
+  m_AnchoredPosition: {x: -5.366089, y: 10.927185}
+  m_SizeDelta: {x: -923.6638, y: -1604.3009}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2017882288
 MonoBehaviour:
@@ -1191,6 +1192,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017882286}
   m_CullTransparentMesh: 1
+--- !u!114 &2017882290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017882286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: becffad14b10c5c4486b72fcecbff938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2035232850
 GameObject:
   m_ObjectHideFlags: 0
